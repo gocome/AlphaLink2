@@ -1103,8 +1103,8 @@ class HmmsearchHitFeaturizer(TemplateHitFeaturizer):
                 "template_all_atom_positions": np.zeros(
                     (1, num_res, residue_constants.atom_type_num, 3), np.float32
                 ),
-                "template_domain_names": np.array(["".encode()], dtype=np.object),
-                "template_sequence": np.array(["".encode()], dtype=np.object),
+                "template_domain_names": np.array(["".encode()], dtype=object),
+                "template_sequence": np.array(["".encode()], dtype=object),
                 "template_sum_probs": np.array([0], dtype=np.float32),
             }
         return TemplateSearchResult(

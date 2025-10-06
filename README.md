@@ -197,3 +197,27 @@ The AlphaLink parameters are made available under the terms of the Creative Comm
 ### Third-party software
 
 Use of the third-party software, libraries or code referred to in the [Acknowledgements](README.md/#acknowledgements) section above may be governed by separate terms and conditions or license provisions. Your use of the third-party software, libraries or code is subject to any such terms and you should check that you can comply with any applicable restrictions or terms and conditions before use.
+
+
+```
+pip install pandas
+pip install dm-tree
+pip uninstall tensorboard
+pip install numpy==1.26.4
+```
+
+```
+pip uninstall dm-haiku jax jaxlib -y
+pip install jax==0.4.13 jaxlib==0.4.13+cuda12.cudnn89 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+pip install dm-haiku==0.0.9
+```
+
+### cpu only
+```
+export JAX_PLATFORMS=cpu
+```
+
+### PDB viewer
+```
+https://www.rcsb.org/3d-view/
+```
