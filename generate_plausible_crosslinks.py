@@ -2,7 +2,7 @@ from Bio.PDB import PDBParser
 import numpy as np
 
 
-pdb_file = "./test_data/1CDL.pdb"
+pdb_file = "./test_data/9DS3.pdb"
 parser = PDBParser()
 structure = parser.get_structure("1CDL", pdb_file)
 
@@ -46,18 +46,24 @@ def get_chain_info(chain):
 chain_ids = [chain.id for model in structure for chain in model]
 print(f"Chains in structure: {chain_ids}")
 
-# assume the first two main chains
-chain_ids = chain_ids[:2]
 chain_infos = {}
-
 for model in structure:
     for chain in model:
-        if chain.id == chain_ids[0]:
-            chain_info = get_chain_info(chain)
-            chain_infos[chain.id] = chain_info
-        elif chain.id == chain_ids[1]:
-            chain_info = get_chain_info(chain)
-            chain_infos[chain.id] = chain_info
+        for chain_id in chain_ids:
+            if chain.id == chain_id:
+                chain_info = get_chain_info(chain)
+                chain_infos[chain.id] = chain_info
+
+for chain_id in chain_ids:
+    print(f" {chain_id}: {chain_infos[chain_id][0]}")
+
+# assume two unique protein chains
+selected_chains = input("Select two chains (e.g., AC) to generate plausible crosslinks: ")
+
+chain_ids = [chain_id for chain_id in chain_infos if chain_id in selected_chains]
+if len(chain_ids) != 2:
+    raise ValueError("Please select exactly two valid chains.")
+
 
 def get_cross_linking(p50_coords, p50_resids, p65_coords, p65_resids):
     max_dist = 30.0  # Å (typical for DSS/BS3)
