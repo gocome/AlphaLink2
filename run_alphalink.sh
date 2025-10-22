@@ -9,6 +9,9 @@ number_of_samples=${8:-25}
 neff=${9:--1}
 dropout_crosslinks=${10:--1}
 
+export JAX_PLATFORMS=cpu
+echo $JAX_PLATFORMS
+
 echo "Starting MSA generation..."
 python unifold/homo_search.py \
     --fasta_path=$fasta_path \
