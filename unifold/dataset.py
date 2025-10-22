@@ -192,6 +192,10 @@ def generate_pickle(crosslink_file):
 
     crosslinks = {}
 
+    if links.shape[1] != 5:
+        print("No crosslinks loaded from", crosslink_file)
+        return crosslinks
+
     for i,chain1,j,chain2,fdr in links:
         i = int(i)
         j = int(j)
