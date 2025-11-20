@@ -4,7 +4,7 @@ from itertools import combinations
 import string
 
 
-pdb_file = "./test_data/6B0S.pdb"
+pdb_file = "./antigen_data/8ZWQ.pdb"
 parser = PDBParser()
 structure = parser.get_structure("1CDL", pdb_file)
 
@@ -34,6 +34,9 @@ def get_chain_info(chain):
             resname = residue.get_resname().strip()
             if resname in aa_map:
                 seq.append(aa_map[resname])
+                resid_pos += 1
+            else:
+                seq.append('X')  # Unknown amino acid
                 resid_pos += 1
 
             # Get Lys Nζ coordinates
